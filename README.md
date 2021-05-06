@@ -25,3 +25,4 @@ El sitio web tiene que tener dos secciones bien diferenciadas:
 
 ## REFERENCIAS
 - Proyecto final en PHP [José Juan Sánchez](https://josejuansanchez.org/iaw/proyecto-php/index.html)
+- [Formulario PHP](https://codewithawa.com/posts/admin-and-user-login-in-php-and-mysql-database)
