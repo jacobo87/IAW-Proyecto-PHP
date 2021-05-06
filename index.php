@@ -12,7 +12,7 @@
 		<h2>Inicio</h2>
 	</div>
 	<div class="content">
-		<!-- notification message -->
+		<!-- mensaje de notificación -->
 		<?php if (isset($_SESSION['success'])) : ?>
 			<div class="error success" >
 				<h3>
@@ -23,7 +23,7 @@
 				</h3>
 			</div>
 		<?php endif ?>
-		<!-- logged in user information -->
+		<!-- Información del usuario conectado -->
 		<div class="profile_info">
 			<img src="images/user_profile.png"  >
 

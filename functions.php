@@ -1,32 +1,32 @@
 <?php 
 session_start();
 
-// connect to database
+// conectarse a la base de datos
 $db = mysqli_connect('localhost', 'user', '', 'multi_login');
 
-// variable declaration
+// declaracion de variables
 $username = "";
 $email    = "";
 $errors   = array(); 
 
-// call the register() function if register_btn is clicked
+// llamar a la función register() si se hace clic en register_btn
 if (isset($_POST['register_btn'])) {
 	register();
 }
 
-// REGISTER USER
+// REGISTRAR USUARIO
 function register(){
-	// call these variables with the global keyword to make them available in function
+	// llamar a estas variables con la palabra clave global para que estén disponibles en la función
 	global $db, $errors, $username, $email;
 
-	// receive all input values from the form. Call the e() function
-    // defined below to escape form values
+	// recibir todos los valores de entrada del formulario. Llama a la función e()
+    // definida a continuación para escapar de los valores del formulario
 	$username    =  e($_POST['username']);
 	$email       =  e($_POST['email']);
 	$password_1  =  e($_POST['password_1']);
 	$password_2  =  e($_POST['password_2']);
 
-	// form validation: ensure that the form is correctly filled
+	// validación de formularios: garantizar que el formulario se rellena correctamente
 	if (empty($username)) { 
 		array_push($errors, "Username requerido"); 
 	}
@@ -40,9 +40,9 @@ function register(){
 		array_push($errors, "Las dos passwords no coninciden");
 	}
 
-	// register user if there are no errors in the form
+	// registrar al usuario si no hay errores en el formulario
 	if (count($errors) == 0) {
-		$password = md5($password_1);//encrypt the password before saving in the database
+		$password = md5($password_1);//encriptar la contraseña antes de guardarla en la base de datos
 
 		if (isset($_POST['user_type'])) {
 			$user_type = e($_POST['user_type']);
@@ -56,17 +56,17 @@ function register(){
 					  VALUES('$username', '$email', 'user', '$password')";
 			mysqli_query($db, $query);
 
-			// get id of the created user
+			// obtener el id del usuario creado
 			$logged_in_user_id = mysqli_insert_id($db);
 
-			$_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
+			$_SESSION['user'] = getUserById($logged_in_user_id); // poner al usuario conectado en la sesión
 			$_SESSION['success']  = "Usted está ahora logueado";
 			header('location: index.php');				
 		}
 	}
 }
 
-// return user array from their id
+// devuelve el array de usuarios a partir de su id
 function getUserById($id){
 	global $db;
 	$query = "SELECT * FROM users WHERE id=" . $id;
@@ -76,7 +76,7 @@ function getUserById($id){
 	return $user;
 }
 
-// escape string
+// cadena de escape
 function e($val){
 	global $db;
 	return mysqli_real_escape_string($db, trim($val));

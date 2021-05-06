@@ -31,7 +31,7 @@ if (isset($_GET['logout'])) {
 		<h2>Admin - Página de inicio</h2>
 	</div>
 	<div class="content">
-		<!-- notification message -->
+		<!-- mensaje de notificación -->
 		<?php if (isset($_SESSION['success'])) : ?>
 			<div class="error success" >
 				<h3>
@@ -43,7 +43,7 @@ if (isset($_GET['logout'])) {
 			</div>
 		<?php endif ?>
 
-		<!-- logged in user information -->
+		<!-- información del usuario conectado -->
 		<div class="profile_info">
 			<img src="../images/admin_profile.png"  >
 
