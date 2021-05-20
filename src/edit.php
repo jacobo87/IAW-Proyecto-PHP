@@ -74,6 +74,14 @@ mysqli_close($mysqli);
 			<label for="name">Name</label>
 			<input type="text" class="form-control" name="name" value="<?php echo $name;?>">
 		</div>
+		<div class="form-group">
+			<label for="apellido1">Apellido 1</label>
+			<input type="text" class="form-control" name="name">
+		</div>
+		<div class="form-group">
+			<label for="apellido2">Apellido 2</label>
+			<input type="text" class="form-control" name="name">
+		</div>
 
 		<div class="form-group">
 			<label for="name">Age</label>
