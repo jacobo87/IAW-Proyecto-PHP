@@ -20,17 +20,27 @@ include_once("config.php");
 
 if(isset($_POST['Submit'])) {
 	$name = mysqli_real_escape_string($mysqli, $_POST['name']);
+	$apellido1 = mysqli_real_escape_string($mysqli, $_POST['apellido1']);
+	$apellido2 = mysqli_real_escape_string($mysqli, $_POST['apellido2']);
 	$age = mysqli_real_escape_string($mysqli, $_POST['age']);
 	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
 
 	// checking empty fields
-	if(empty($name) || empty($age) || empty($email)) {
+	if(empty($name) || empty($age) || empty($apellido1) || empty($apellido2) || empty($email)) {
 		if(empty($name)) {
 			echo "<div class='alert alert-danger' role='alert'>Name field is empty</div>";
 		}
 
 		if(empty($age)) {
 			echo "<div class='alert alert-danger' role='alert'>Age field is empty</div>";
+		}
+
+		if(empty($apellido1)) {
+			echo "<div class='alert alert-danger' role='alert'>Apellido1 field is empty</div>";
+		}
+
+		if(empty($apellido2)) {
+			echo "<div class='alert alert-danger' role='alert'>Apellido2 field is empty</div>";
 		}
 
 		if(empty($email)) {
@@ -43,8 +53,8 @@ if(isset($_POST['Submit'])) {
 		// if all the fields are filled (not empty)
 
 		// insert data to database
-		$stmt = mysqli_prepare($mysqli, "INSERT INTO users(name,age,email) VALUES(?,?,?)");
-		mysqli_stmt_bind_param($stmt, "sis", $name, $age, $email);
+		$stmt = mysqli_prepare($mysqli, "INSERT INTO users(name,age, apellido1, apellido2, email) VALUES(?,?,?)");
+		mysqli_stmt_bind_param($stmt, $name, $age, $apellido1, $apellido2, $email);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_free_result($stmt);
 		mysqli_stmt_close($stmt);

@@ -6,16 +6,24 @@ if(isset($_POST['update'])) {
 	$id = mysqli_real_escape_string($mysqli, $_POST['id']);
 	$name = mysqli_real_escape_string($mysqli, $_POST['name']);
 	$age = mysqli_real_escape_string($mysqli, $_POST['age']);
+	$apellido1 = mysqli_real_escape_string($mysqli, $_POST['apellido1']);
+	$apellido2 = mysqli_real_escape_string($mysqli, $_POST['apellido2']);
 	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
 
 	// checking empty fields
-	if(empty($name) || empty($age) || empty($email)) {
+	if(empty($name) || empty($age) || empty($apellido1) || empty($apellido2) || empty($email)) {
 		if(empty($name)) {
 			echo "<font color='red'>Name field is empty.</font><br/>";
 		}
 
 		if(empty($age)) {
 			echo "<font color='red'>Age field is empty.</font><br/>";
+		}
+		if(empty($apellido1)) {
+			echo "<font color='red'>Apellido1 field is empty.</font><br/>"
+		}
+		if(empty($apellido2)) {
+			echo "<font color='red'>Apellido2 field is empty.</font><br/>"
 		}
 
 		if(empty($email)) {
@@ -24,7 +32,7 @@ if(isset($_POST['update'])) {
 	} else {
 		// updating the table
 		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?,age=?,email=? WHERE id=?");
-		mysqli_stmt_bind_param($stmt, "sisi", $name, $age, $email, $id);
+		mysqli_stmt_bind_param($stmt, "sssisi", $name, $age, $apallido1, $apellido2, $email, $id);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_free_result($stmt);
 		mysqli_stmt_close($stmt);
@@ -40,10 +48,10 @@ if(isset($_POST['update'])) {
 $id = $_GET['id'];
 
 // selecting data associated with this particular id
-$stmt = mysqli_prepare($mysqli, "SELECT name, age, email FROM users WHERE id=?");
+$stmt = mysqli_prepare($mysqli, "SELECT name, age, apellido1, apellido2, email FROM users WHERE id=?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $name, $age, $email);
+mysqli_stmt_bind_result($stmt, $name, $age, $apellido1, $apellido2, $email);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_free_result($stmt);
 mysqli_stmt_close($stmt);
@@ -76,11 +84,11 @@ mysqli_close($mysqli);
 		</div>
 		<div class="form-group">
 			<label for="apellido1">Apellido 1</label>
-			<input type="text" class="form-control" name="name">
+			<input type="text" class="form-control" name="apellido1" value="<?php echo $apellido1;?>">
 		</div>
 		<div class="form-group">
 			<label for="apellido2">Apellido 2</label>
-			<input type="text" class="form-control" name="name">
+			<input type="text" class="form-control" name="apellido2" value="<?php echo $apellido2;?>">
 		</div>
 
 		<div class="form-group">
