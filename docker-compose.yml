@@ -27,11 +27,11 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - 8080:80
+      - 8080:8080
     environment:
       - PMA_HOST=mysql
     depends_on: 
       - mysql 
-      
+
 volumes:
   mysql_data:
