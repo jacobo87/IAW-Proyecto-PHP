@@ -84,10 +84,12 @@ mysqli_close($mysqli);
 			<label for="name">Name</label>
 			<input type="text" class="form-control" name="name" value="<?php echo $name;?>">
 		</div>
+
 		<div class="form-group">
 			<label for="name">Apellido 1</label>
 			<input type="text" class="form-control" name="apellido1" value="<?php echo $apellido1;?>">
 		</div>
+		
 		<div class="form-group">
 			<label for="name">Apellido 2</label>
 			<input type="text" class="form-control" name="apellido2" value="<?php echo $apellido2;?>">
