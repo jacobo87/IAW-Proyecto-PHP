@@ -34,7 +34,7 @@ if(isset($_POST['update'])) {
 	} else {
 		// updating the table
 		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?,apellido1=?,apellido2=?,age=?,email=? WHERE id=?");
-		mysqli_stmt_bind_param($stmt, "sssisi", $name, $apallido1, $apellido2, $age, $email, $id);
+		mysqli_stmt_bind_param($stmt, "sssisi", $name, $apellido1, $apellido2, $age, $email, $id);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_free_result($stmt);
 		mysqli_stmt_close($stmt);
