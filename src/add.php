@@ -54,7 +54,7 @@ if(isset($_POST['Submit'])) {
 
 		// insert data to database
 		$stmt = mysqli_prepare($mysqli, "INSERT INTO users(name, apellido1, apellido2, age, email) VALUES(?,?,?,?,?)");
-		mysqli_stmt_bind_param($stmt, "sssis" $name, $apellido1, $apellido2, $age, $email);
+		mysqli_stmt_bind_param($stmt, "sssis", $name, $apellido1, $apellido2, $age, $email);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_free_result($stmt);
 		mysqli_stmt_close($stmt);
