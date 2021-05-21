@@ -16,14 +16,16 @@ if(isset($_POST['update'])) {
 			echo "<font color='red'>Name field is empty.</font><br/>";
 		}
 
-		if(empty($age)) {
-			echo "<font color='red'>Age field is empty.</font><br/>";
-		}
 		if(empty($apellido1)) {
 			echo "<font color='red'>Apellido1 field is empty.</font><br/>"
 		}
+
 		if(empty($apellido2)) {
 			echo "<font color='red'>Apellido2 field is empty.</font><br/>"
+		}
+
+		if(empty($age)) {
+			echo "<font color='red'>Age field is empty.</font><br/>";
 		}
 
 		if(empty($email)) {
@@ -32,7 +34,7 @@ if(isset($_POST['update'])) {
 	} else {
 		// updating the table
 		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?,age=?,email=? WHERE id=?");
-		mysqli_stmt_bind_param($stmt, "sssisi", $name, $age, $apallido1, $apellido2, $email, $id);
+		mysqli_stmt_bind_param($stmt, "sssisi", $name, $apallido1, $apellido2, $age, $email, $id);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_free_result($stmt);
 		mysqli_stmt_close($stmt);
@@ -48,10 +50,10 @@ if(isset($_POST['update'])) {
 $id = $_GET['id'];
 
 // selecting data associated with this particular id
-$stmt = mysqli_prepare($mysqli, "SELECT name, age, apellido1, apellido2, email FROM users WHERE id=?");
+$stmt = mysqli_prepare($mysqli, "SELECT name, apellido1, apellido2, age, email FROM users WHERE id=?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $name, $age, $apellido1, $apellido2, $email);
+mysqli_stmt_bind_result($stmt, $name, $apellido1, $apellido2, $age, $email);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_free_result($stmt);
 mysqli_stmt_close($stmt);
