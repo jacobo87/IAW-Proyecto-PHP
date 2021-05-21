@@ -53,8 +53,16 @@ if(isset($_POST['Submit'])) {
 		// if all the fields are filled (not empty)
 
 		// insert data to database
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		$stmt = mysqli_prepare($mysqli, "INSERT INTO users(name,apellido1,apellido2,age,email) VALUES(?,?,?,?,?)");
+		mysqli_stmt_bind_param($stmt, $name, $age, $apellido1, $apellido2, $email);
+=======
+>>>>>>> 6721902e4a49825cf934e0b4b4b1e2d7da88b271
 		$stmt = mysqli_prepare($mysqli, "INSERT INTO users(name, apellido1, apellido2, age, email) VALUES(?,?,?,?,?)");
 		mysqli_stmt_bind_param($stmt, "sssis" $name, $apellido1, $apellido2, $age, $email);
+>>>>>>> ca039a2853ab62146720498665f8e795d5973240
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_free_result($stmt);
 		mysqli_stmt_close($stmt);
