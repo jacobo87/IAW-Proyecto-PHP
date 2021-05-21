@@ -31,8 +31,8 @@ if(isset($_POST['update'])) {
 		}
 	} else {
 		// updating the table
-		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?,age=?,email=? WHERE id=?");
-		mysqli_stmt_bind_param($stmt, "sssisi", $name, $age, $apallido1, $apellido2, $email, $id);
+		$stmt = mysqli_prepare($mysqli, "UPDATE users SET name=?, apellido1=?, apellido2=?, age=?,email=? WHERE id=?");
+		mysqli_stmt_bind_param($stmt, "sssisi", $name, $age, $apellido1, $apellido2, $email, $id);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_free_result($stmt);
 		mysqli_stmt_close($stmt);
@@ -51,7 +51,7 @@ $id = $_GET['id'];
 $stmt = mysqli_prepare($mysqli, "SELECT name, age, apellido1, apellido2, email FROM users WHERE id=?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $name, $age, $apellido1, $apellido2, $email);
+mysqli_stmt_bind_result($stmt, $name, $apellido1, $apellido2, $age, $email);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_free_result($stmt);
 mysqli_stmt_close($stmt);
@@ -83,11 +83,11 @@ mysqli_close($mysqli);
 			<input type="text" class="form-control" name="name" value="<?php echo $name;?>">
 		</div>
 		<div class="form-group">
-			<label for="apellido1">Apellido 1</label>
+			<label for="name">Apellido 1</label>
 			<input type="text" class="form-control" name="apellido1" value="<?php echo $apellido1;?>">
 		</div>
 		<div class="form-group">
-			<label for="apellido2">Apellido 2</label>
+			<label for="name">Apellido 2</label>
 			<input type="text" class="form-control" name="apellido2" value="<?php echo $apellido2;?>">
 		</div>
 
