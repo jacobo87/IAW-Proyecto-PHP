@@ -5,6 +5,8 @@ services:
     build: ./apache
     ports: 
       - 80:80
+    depends_on:
+      - mysql
     volumes:
       - ./src:/var/www/html
 
